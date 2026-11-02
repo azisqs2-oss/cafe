@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta charset="UTF-8"><title>조회</title></head>
+<body>
+  <h1>test</h1>
+  <form method="post" action="/menu">
+	<label>메뉴명<input name="menu" maxlength="100" required></label>
+	<label>가격<input type="number" name="price" min="-2147483648" max="2147483647" required></label>
+	<label>카테고리<input name="category" maxlength="100" required></label>
+	<button type="submit">메뉴 등록</button><br>
+  </form>
+  <form method="post" action="/delete">  
+	<label>ID <input type="number" name="id" min="1" required></label>
+	<button type="submit">메뉴 삭제</button>
+  </form>
+  <form method="post" action="/update">
+	  <label>ID<input type="number" name="id" min="1" required></label>
+	  <label>메뉴명<input name="menu" maxlength="100" required></label>
+	  <label>가격<input type="number" name="price" min="-2147483648" max="2147483647" required></label>
+	  <label>카테고리<input name="category" maxlength="100" required></label>
+	  <button type="submit">메뉴 수정</button>
+   </form>
+   <form method="post" action="/search">
+	   <label>메뉴명<input name="keyword" value="<%= keyword %>" maxlength="100"></label>
+	   <button type="submit">메뉴명 검색</button>
+    </form>
+  <table border="1">
+	  <thead><tr><th>ID</th><th>Menu</th><th>Price</th><th>Category</th><tr></thead>
+   <tbody>
+     <% menu.forEach((item) => { %>
+     <tr><td><%= item.id %></td><td><%= item.menu %></td><td><%= item.price %></td><td><%= item.category %></td></tr>
+     <% }); %>
+     <% if (menu.length == 0) { %>
+        <tr><td colspan="3">조회 결과가 없습니다.</td></tr>
+     <% } %>
+    </tbody>
+   </table>
+</body>
+</html>
